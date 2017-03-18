@@ -145,10 +145,10 @@ module FFMPEG
       "-i #{value}"
     end
 
-    def profile(value)
+    def convert_profile(value)
       ["-profile:v", value]
     end
-    
+
     def convert_watermark_filter(value)
       case value[:position].to_s
       when "LT"
