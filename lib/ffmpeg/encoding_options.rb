@@ -149,9 +149,9 @@ module FFMPEG
       ["-profile:v", value]
     end
 
-#    def convert_pix_fmt(value)
-#      ["-pix_fmt", value]
-#    end
+    def convert_pix_fmt(value)
+      ["-pix_fmt", value]
+    end
 
     def convert_watermark_filter(value)
       case value[:position].to_s

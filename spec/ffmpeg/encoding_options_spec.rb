@@ -112,7 +112,19 @@ module FFMPEG
         EncodingOptions.new(screenshot: true).to_s.should == "-vframes 1 -f image2"
       end
 
-      it "should put the parameters in order of codecs, presets, others" do
+      it 'should specify screenshot parameters when using video quality -v:q' do
+        expect(EncodingOptions.new(screenshot: true, vframes: 123, quality: 3).to_a).to eq(%w(-f image2 -vframes 123 -q:v 3))
+      end
+
+      it "should accept and set profile:v" do
+        expect(EncodingOptions.new(profile: "baseline").to_a).to eq(%w(-profile:v baseline))
+      end
+
+      it "should accept and set pix_fmt" do
+        expect(EncodingOptions.new(pix_fmt: "yuv420p").to_a).to eq(%w(-pix_fmt yuv420p))
+      end
+
+      it 'should put the parameters in order of codecs, presets, others' do
         opts = Hash.new
         opts[:frame_rate] = 25
         opts[:video_codec] = "libx264"
